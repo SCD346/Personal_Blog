@@ -1,0 +1,24 @@
+{
+  "name": "personal_blog",
+  "version": "1.0.0",
+  "description": "Blog app for general use, learning and experimentation.",
+  "main": "server.js",
+  "scripts": {
+    "test": "jest --coverage",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SCD346/Personal_Blog.git"
+  },
+  "keywords": [
+    "blog",
+    "MERN"
+  ],
+  "author": "S_Doherty",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SCD346/Personal_Blog/issues"
+  },
+  "homepage": "https://github.com/SCD346/Personal_Blog#readme"
+}
