@@ -7,6 +7,10 @@ const entrySchema = new Schema({
   title: { type: String },
   body: { type: String },
   image: { type: String, default: "http://placehold.it/500x500.png" },
+  entry: {
+    type: Schema.Types.ObjectId,
+    ref: "Entry",
+  },
 });
 
 //ENTRY MODEL

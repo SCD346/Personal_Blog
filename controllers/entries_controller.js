@@ -18,20 +18,36 @@ entries.get("/new", (req, res) => {
   res.render("new");
 });
 
-// ROUTE: Creata a new entry
+// ROUTE: Get a entry by id
+entries.get("/:id", (req, res) => {
+  Entry.findById(req.params.id)
+    .populate("entry")
+    .then((foundEntry) => {
+      res.render("show", {
+        entry: foundEntry,
+      });
+    })
+    .catch((err) => {
+      console.log("ERROR: ", err);
+      res.send("404");
+    });
+});
+
+// ROUTE: DELETE -> Deletes the entry by id
+entries.delete("/:id", (req, res) => {
+  Entry.findByIdAndDelete(req.params.id).then((deletedEntry) => {
+    res.status(303).redirect("/entries");
+  });
+});
+
+// ROUTE: Create a new entry
 entries.post("/", (req, res) => {
   if (!req.body.image) {
     req.body.image = undefined;
   }
-
   Entry.create(req.body).then(() => {
     res.redirect("/entries");
   });
-  // .catch(error => {
-  //     res.render('New', {
-  //       error
-  //     })
-  // })
 });
 
 //EXPORT
