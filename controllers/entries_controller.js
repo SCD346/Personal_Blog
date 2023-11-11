@@ -33,9 +33,34 @@ entries.get("/:id", (req, res) => {
     });
 });
 
+// ROUTE: GET the edit form, populates it by id
+entries.get("/:id/edit", (req, res) => {
+  Entry.findById(req.params.id).then((foundEntry) => {
+    res.render("edit", {
+      entry: foundEntry,
+    });
+  });
+});
+
+// ROUTE: PUT -> Updates an entry
+entries.put("/:id", (req, res) => {
+  Entry.findByIdAndUpdate(req.params.id, req.body, { new: true })
+    .then((updatedEntry) => {
+      if (!updatedEntry) {
+        return res.status(404).send("Entry not found");
+      }
+      console.log(updatedEntry);
+      res.redirect(`/entries/${req.params.id}`);
+    })
+    .catch((error) => {
+      console.error("Error updating entry:", error);
+      res.status(500).send("Internal Server Error");
+    });
+});
+
 // ROUTE: DELETE -> Deletes the entry by id
 entries.delete("/:id", (req, res) => {
-  Entry.findByIdAndDelete(req.params.id).then((deletedEntry) => {
+  Entry.findByIdAndDelete(req.params.id).then(() => {
     res.status(303).redirect("/entries");
   });
 });
