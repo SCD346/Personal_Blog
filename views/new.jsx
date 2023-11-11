@@ -10,7 +10,20 @@ function New() {
         <input type="text" name="title" id="title" required />
 
         <label htmlFor="body">Body</label>
-        <input type="text" name="body" id="body" required />
+        <textarea
+          type="text"
+          name="body"
+          id="body"
+          required
+          // REMOVE THIS STYLE WHEN WORKING ON FRONT END
+          style={{
+            height: "400px",
+            width: "400px",
+            overflowWrap: "break-word",
+            wordWrap: "break-word",
+            wordBreak: "break-word",
+          }}
+        />
 
         <label htmlFor="image">Image</label>
         <input type="text" name="image" id="image" />
