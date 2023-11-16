@@ -2,6 +2,7 @@
 const express = require("express");
 const methodOverride = require("method-override");
 const mongoose = require("mongoose");
+const morgan = require("morgan");
 
 //CONFIG
 require("dotenv").config();
@@ -15,6 +16,11 @@ app.engine("jsx", require("express-react-views").createEngine());
 app.use(express.static("public"));
 app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
+app.use((req, res, next) => {
+  console.log("Hello from middleware.  😁");
+  next();
+});
+app.use(morgan("dev"));
 
 // ROUTES
 app.get("/", (req, res) => {
