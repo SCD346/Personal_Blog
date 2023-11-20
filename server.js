@@ -4,6 +4,7 @@ const methodOverride = require("method-override");
 const mongoose = require("mongoose");
 const morgan = require("morgan");
 const userRoutes = require("./routes/userRoutes.js");
+const { notFound, errorHandler } = require("./middleware/errorMiddleware.js");
 
 //CONFIG
 require("dotenv").config();
@@ -23,6 +24,8 @@ app.use((req, res, next) => {
 });
 app.use(morgan("dev"));
 app.use(express.json()); //to accept JSON data
+app.use(notFound);
+app.use(errorHandler);
 
 app.use("/api/user", userRoutes);
 
