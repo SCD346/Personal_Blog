@@ -25,11 +25,6 @@ const userSchema = new Schema({
     required: [true, "Please provide a password."],
     minlength: 8,
   },
-
-  confirmPassword: {
-    type: String,
-    required: [true, "Please confirm your password."],
-  },
 });
 
 //USER MODEL
@@ -37,3 +32,8 @@ const User = mongoose.model("User", userSchema);
 
 //EXPORT USER
 module.exports = User;
+
+// confirmPassword: {
+//   type: String,
+//   required: [true, "Please confirm your password."],
+// },

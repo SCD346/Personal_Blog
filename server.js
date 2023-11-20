@@ -3,6 +3,7 @@ const express = require("express");
 const methodOverride = require("method-override");
 const mongoose = require("mongoose");
 const morgan = require("morgan");
+const userRoutes = require("./routes/userRoutes.js");
 
 //CONFIG
 require("dotenv").config();
@@ -21,6 +22,9 @@ app.use((req, res, next) => {
   next();
 });
 app.use(morgan("dev"));
+app.use(express.json()); //to accept JSON data
+
+app.use("/api/user", userRoutes);
 
 // ROUTES
 app.get("/", (req, res) => {
