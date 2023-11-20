@@ -1,5 +1,5 @@
 const express = require("express");
-const { registerUser } = require("../controllers/userController");
+const { registerUser, authUser } = require("../controllers/userController");
 // const userController = require("./../controllers/userController");
 // const authController = require("./../controllers/authController");
 // const { model } = require("mongoose");
@@ -7,6 +7,8 @@ const { registerUser } = require("../controllers/userController");
 const router = express.Router();
 
 router.route("/").post(registerUser);
+
+router.post("/login", authUser);
 
 // router.post("/signup", authController.signup);
 // router.post("/login", authController.login);
