@@ -29,11 +29,11 @@ app.use(express.json()); //to accept JSON data
 
 app.use("/api/user", userRoutes);
 
-// ROUTES
+//ROUTE: Login page
 app.get("/", (req, res) => {
-  res.send("Welcome to the Blog");
+  // res.send("Welcome to the Blog");
+  res.render("login");
 });
-
 // Entries
 const entriesController = require("./controllers/entries_controller.js");
 app.use("/entries", entriesController);
